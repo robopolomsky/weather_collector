@@ -23,15 +23,30 @@ namespace WeatherCollector.Properties {
             }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string Setting {
+        [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
+<ArrayOfString xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
+  <string>Kosice,820323</string>
+  <string>Poprad,821722</string>
+  <string>Presov,821782</string>
+  <string>Humenne,819877</string>
+  <string>Banska Bystrica,818511</string>
+  <string>Bratislava,818717</string>
+  <string>Zilina,823382</string>
+</ArrayOfString>")]
+        public global::System.Collections.Specialized.StringCollection Cities {
             get {
-                return ((string)(this["Setting"]));
+                return ((global::System.Collections.Specialized.StringCollection)(this["Cities"]));
             }
-            set {
-                this["Setting"] = value;
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("200")]
+        public int MaxLoadAttempts {
+            get {
+                return ((int)(this["MaxLoadAttempts"]));
             }
         }
     }

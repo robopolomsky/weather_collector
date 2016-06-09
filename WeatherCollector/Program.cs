@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Threading;
 
@@ -11,20 +12,25 @@ namespace WeatherCollector
 
         static void Main()
         {
-            _cities = new List<CityInfo>
+            _cities = new List<CityInfo>();
+
+            StringCollection collection = Properties.Settings.Default.Cities;
+            foreach (string s in collection)
             {
-                new CityInfo("820323"), // Kosice
-                new CityInfo("821722"), // Poprad
-                new CityInfo("821782"), // Presov
-                new CityInfo("819877"), // Humenne
-                new CityInfo("818511"), // Banska Bystrica
-                new CityInfo("818717"), // Bratislava
-                new CityInfo("823382") // Zilina
-            };
+                if (!s.Contains(","))
+                {
+                    string errMsg = string.Format($"CHYBA: Udaj o meste \"{s}\" nema ciarku");
+                    Console.Out.WriteLine(errMsg);
+                    NLog.LogManager.GetCurrentClassLogger().Error(errMsg);
+                }
+                string[] split = s.Split(',');
+                _cities.Add(new CityInfo(split[1]));
+            }
+
             Console.Out.WriteLine($"Zistujem akutalne pocasie v {_cities.Count} mestach ...");
 
             int loadAttempts = 0;
-            const int maxLoadAttempts = 200;
+            int maxLoadAttempts = Properties.Settings.Default.MaxLoadAttempts;
             while (_cities.Any(x => !x.Loaded) && loadAttempts < maxLoadAttempts)
             {                
                 foreach (CityInfo city in _cities.Where(x => !x.Loaded))
@@ -41,11 +47,15 @@ namespace WeatherCollector
                 string errMsg = string.Format($"CHYBA: Dosiahnuty maximalny pocet {maxLoadAttempts} pokusov");
                 Console.Out.WriteLine(errMsg);
                 NLog.LogManager.GetCurrentClassLogger().Error(errMsg);
+                Thread.Sleep(3000);
             }
             Console.Out.WriteLine("");
-            foreach (CityInfo city in _cities)
-                city.Output();
-
+            for (int index = 0; index < _cities.Count; index++)
+            {
+                CityInfo city = _cities[index];
+                city.Output(index == _cities.Count -1);
+            }
+            
             //Console.ReadKey();
         }
 

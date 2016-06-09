@@ -1,0 +1,12 @@
+Instalacia:
+  Skus spustit WeatherCollector.exe
+  Ak to vobec nejde spustit, nainstaluj .NET Framework 4.5.2 napr. odtial: https://www.microsoft.com/en-us/download/details.aspx?id=42643
+  ... starsie windowsy to nemaju, tak to treba doinstalovat.
+
+  program vytvori subor data/Pocasie_<rok>-<mesiac>.txt
+
+  spustaj priamo, alebo cez Planovac uloh (Task Scheduler) ... najdes ho v ovladacom paneli.
+
+Nastavenie:
+  Mesta pridavaj do WeatherCollector.exe.config. Aby si nasiel cislo mesta, chod na https://www.yahoo.com/news/weather/ , najdi si mesto pomocou Change Location a cislo mesta vycitas z adresneho riadka.
+  

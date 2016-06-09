@@ -2,8 +2,20 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="WeatherCollector.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="Setting" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+    <Setting Name="Cities" Type="System.Collections.Specialized.StringCollection" Scope="Application">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;string&gt;Kosice,820323&lt;/string&gt;
+  &lt;string&gt;Poprad,821722&lt;/string&gt;
+  &lt;string&gt;Presov,821782&lt;/string&gt;
+  &lt;string&gt;Humenne,819877&lt;/string&gt;
+  &lt;string&gt;Banska Bystrica,818511&lt;/string&gt;
+  &lt;string&gt;Bratislava,818717&lt;/string&gt;
+  &lt;string&gt;Zilina,823382&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+    <Setting Name="MaxLoadAttempts" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">200</Value>
     </Setting>
   </Settings>
 </SettingsFile>

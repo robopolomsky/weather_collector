@@ -80,7 +80,7 @@ namespace WeatherCollector
             }
         }
 
-        public void Output()
+        public void Output(bool isLast)
         {
             LogEventInfo logEventInfo;
             if (Loaded)
@@ -97,6 +97,9 @@ namespace WeatherCollector
                     Message = string.Format($"ID Mesta: {_cityID} Chyba: {_lastErr.Message}")
                 };
             }
+            if (isLast)
+                logEventInfo.Message += Environment.NewLine;
+
             LogManager.GetCurrentClassLogger().Log(logEventInfo);
             Console.Out.WriteLine(logEventInfo.Message);
         }
